@@ -2,6 +2,8 @@
 	
 	include 'includes/admin_header.php';
 
+	include 'includes/db.php';
+
 	include 'includes/functions.php';
 
 	$errors = [];
@@ -35,6 +37,13 @@
 
 		if(empty($errors)) {
 
+			$clean = array_map('trim', $_POST);
+
+			$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
+
+			$clean['password'] = $hash;
+
+			adminRegister($conn, $clean);
 
 		}
 	}
