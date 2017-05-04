@@ -93,4 +93,24 @@
 	}
 
 
+	function viewPost($dbconn) {
+
+		$result = "";
+
+		$stmt = $dbconn->prepare("SELECT * FROM blogpost");
+
+		$stmt->execute();
+
+		while($row = $stmt->fetch(PDO::FETCH_BOTH)){
+
+			$result .= '<tr><td>'.$row[0].'</td>';
+			$result .= '<td>'.$row[1].'</td>';
+			$result .= '<td>'.$row[2].'</td>';
+			$result .= '<td>'.$row[3].'</td>';
+			$result .= '<td><a href="edit_products.php?book_id='.$row[0].'">edit</a></td>';
+			$result .= '<td><a href="delete_products.php?book_id='.$row[0].'">delete</a></td></tr>';
+		}
+		return $result;
+	}
+
 ?>
