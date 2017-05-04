@@ -33,6 +33,6 @@
     <div class="blog-header">
       <div class="container">
         <h1 class="blog-title">The Swap Blog</h1>
-        <p class="lead blog-description">Your best guide to qualitative programming posts.</p>
+        <p class="lead blog-description">Your best bet for qualitative programming posts.</p>
       </div>
     </div>
