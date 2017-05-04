@@ -33,14 +33,14 @@
 
 		if(empty($errors)) {
 
-	/*		$clean = array_map('trim', $_POST);
-			$clean['id'] = $bookID;
+			$clean = array_map('trim', $_POST);
+			$clean['id'] = $postID;
 
-			editProducts($conn, $clean);
+			editPost($conn, $clean);
 
-			redirect("view_products.php", "");
+			redirect("view_post.php", "");
 
-			*/
+			
 		
 		}
 
