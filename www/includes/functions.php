@@ -118,7 +118,7 @@
 			$result .= '<td>'.$row[4].'</td>';
 			$result .= '<td><a href="editPost.php?post_id='.$row[0].'">edit</a></td>';
 			$result .= '<td><a href="deletePost.php?post_id='.$row[0].'">delete</a></td>';
-			$result .= '<td><a href="archive.php?post_id='.$row[0].'">archive</a></td></tr>';
+			$result .= '<td><a href="archive_post.php?post_id='.$row[0].'">archive</a></td></tr>';
 		}
 		return $result;
 	}
@@ -157,5 +157,16 @@
 
 		$stmt->bindParam(':pi', $pid);
 		$stmt->execute();
+	}
+
+
+	function addArchive($dbconn, $pid) {
+
+		$stmt = $dbconn->prepare("INSERT INTO archive(post_id, post_date) SELECT post_id, post_date FROM blogpost
+											WHERE post_id = :pid");
+
+		$stmt->bindParam(':pid', $pid);
+		$stmt->execute();
+
 	}
 ?>
