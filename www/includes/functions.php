@@ -126,4 +126,18 @@
 	
 		return $row;
 		}
+
+
+	function editPost($dbconn, $input) {
+
+		$stmt = $dbconn->prepare("UPDATE blogpost SET title = :t, post = :p, post_date = NOW() WHERE post_id = :pid");
+
+		$data = [
+				 ':t' => $input['title'],
+				 ':p' => $input['comment'],
+				 ':pid' => $input['id']
+				];
+
+		$stmt->execute($data);
+	}
 ?>
