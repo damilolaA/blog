@@ -16,7 +16,7 @@
 
 	# determine if user is loggcheckLogin();
 
-	$title = 'Add Post';
+	$title = 'Add Blogpost';
 
 	include 'includes/admin_header.php';
 
