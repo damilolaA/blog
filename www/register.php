@@ -1,10 +1,10 @@
 <?php
+
+	include 'includes/functions.php';
 	
 	include 'includes/admin_header.php';
 
 	include 'includes/db.php';
-
-	include 'includes/functions.php';
 
 	$title = 'Admin Register';
 
