@@ -108,7 +108,7 @@
 			$result .= '<td>'.$row[2].'</td>';
 			$result .= '<td>'.$row[3].'</td>';
 			$result .= '<td><a href="editPost.php?post_id='.$row[0].'">edit</a></td>';
-			$result .= '<td><a href="delete_post.php?post_id='.$row[0].'">delete</a></td>';
+			$result .= '<td><a href="deletePost.php?post_id='.$row[0].'">delete</a></td>';
 			$result .= '<td><a href="archive.php?post_id='.$row[0].'">archive</a></td></tr>';
 		}
 		return $result;
@@ -139,5 +139,14 @@
 				];
 
 		$stmt->execute($data);
+	}
+
+
+	function deletePost($dbconn, $pid) {
+
+		$stmt = $dbconn->prepare("DELETE FROM blogpost WHERE post_id = :pi");
+
+		$stmt->bindParam(':pi', $pid);
+		$stmt->execute();
 	}
 ?>
