@@ -38,10 +38,8 @@
 		<h4 class="jumpto">Have an account? <a href="login.php">login</a></h4>
 	</div>
 
-	<section class="foot">
-		<div>
-			<p>&copy; 2016;
-		</div>
-	</section>
-</body>
-</html>
+<?php
+
+	include 'includes/admin_footer.php';
+
+?>
