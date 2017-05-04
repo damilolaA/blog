@@ -6,6 +6,8 @@
 
 	include 'includes/functions.php';
 
+	$title = 'Admin Register';
+
 	$errors = [];
 
 	if(array_key_exists('register', $_POST)) {
