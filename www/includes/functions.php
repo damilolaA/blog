@@ -169,4 +169,24 @@
 		$stmt->execute();
 
 	}
+
+
+	function getPost($dbconn) {
+
+		$result = '';
+
+		$stmt = $dbconn->prepare("SELECT * FROM blogpost");
+
+		$stmt->execute();
+
+		while($row = $stmt->fetch(PDO::FETCH_BOTH)) {
+
+			$result = '<div class="blog-post">
+           			   <h2 class="blog-post-title">'.$row[1].'</h2>
+           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">Mark</a></p>
+           			   <p>  '.$row[2].'  </p>';
+
+		}
+		return $result;
+	}
 ?>
