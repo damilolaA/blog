@@ -70,6 +70,27 @@
 	}
 
 
+	function addPost($dbconn, $input) {
+
+		$stmt = $dbconn->prepare("INSERT INTO blogpost(title, post, admin_id, post_date) VALUES(:t, :p, :ad, NOW())");
+
+		$data = [
+				  ':t' => $input['title'],
+				  ':p' => $input['content'],
+				  ':ad' => $input['aid'],
+				//  ':d' => $input['date']
+				];
+
+		/*print_r($data); exit();*/
+
+		$stmt->execute($data);
+	}
+
+	function checkLogin() {
+		if(!isset($_SESSION['id'])) {
+			redirect("admin_login.php", "");
+		}
+	}
 
 
 ?>
