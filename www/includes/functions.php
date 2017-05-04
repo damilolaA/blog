@@ -7,6 +7,11 @@
 		}
 	}
 
+	function redirect($loc, $msg) {
+
+		header('Location: '.$loc.$msg);
+	}
+
 
 	function adminRegister($dbconn, $input) {
 
@@ -36,6 +41,30 @@
 
 		if($count > 0) {
 			$result = true;
+		}
+		return $result;
+	}
+
+
+	function adminLogin($dbconn, $input) {
+
+		$result = [];
+
+		$stmt = $dbconn->prepare("SELECT admin_id, hash FROM admin WHERE email = :e");
+
+		$stmt->bindParam(':e', $input['email']);
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_BOTH);
+
+		if(($stmt->rowCount() != 1) || !password_verify($input['password'], $row['hash'])) {
+			
+			redirect("admin_login.php?msg=", "invalid email and/or password");
+			exit();
+
+		}else {
+			$result[] = true;
+			$result[] = $row['admin_id'];
 		}
 		return $result;
 	}
