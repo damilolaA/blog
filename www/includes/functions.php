@@ -13,6 +13,15 @@
 	}
 
 
+	function curNav($page) {
+		$curPage = basename($_SERVER['SCRIPT_FILENAME']);
+
+		if($curPage == $page) {
+			echo 'class = "selected"';
+		}
+	}
+
+
 	function adminRegister($dbconn, $input) {
 
 		$stmt = $dbconn->prepare("INSERT INTO admin(fname, lname, email, hash) VALUES(:f, :l, :e, :h)");
@@ -106,7 +115,7 @@
 			$result .= '<tr><td>'.$row[0].'</td>';
 			$result .= '<td>'.$row[1].'</td>';
 			$result .= '<td>'.$row[2].'</td>';
-			$result .= '<td>'.$row[3].'</td>';
+			$result .= '<td>'.$row[4].'</td>';
 			$result .= '<td><a href="editPost.php?post_id='.$row[0].'">edit</a></td>';
 			$result .= '<td><a href="deletePost.php?post_id='.$row[0].'">delete</a></td>';
 			$result .= '<td><a href="archive.php?post_id='.$row[0].'">archive</a></td></tr>';
