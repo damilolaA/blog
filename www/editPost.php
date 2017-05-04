@@ -41,7 +41,6 @@
 			redirect("view_post.php", "");
 
 			
-		
 		}
 
 	}
