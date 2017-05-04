@@ -1,8 +1,8 @@
 <?php
 	
-	define('DBNAME', 'blog'),
-	define('DBUSER', 'root'),
-	define('DBPASS', 'damilolo')
+	define('DBNAME', 'blog');
+	define('DBUSER', 'root');
+	define('DBPASS', 'damilolo');
 
 	try{
 
