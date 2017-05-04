@@ -34,6 +34,10 @@
 			$errors['pword'] = "password does not match";
 		}
 
+		$check = doesEmailExists($conn, $_POST['email']);
+
+		if($check) {$errors['email'] = "Email already exists"; }
+
 
 		if(empty($errors)) {
 
