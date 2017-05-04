@@ -2,14 +2,14 @@
 	
 	session_start();
 
-	include 'includes/admin_header.php';
-
-	include 'includes/db.php';
-
 	include 'includes/functions.php';
+
+	include 'includes/admin_header.php';
 
 	$title = 'Admin Login';
 
+	include 'includes/db.php';
+	
 	$errors = [];
 
 	if(array_key_exists('login', $_POST)) {
