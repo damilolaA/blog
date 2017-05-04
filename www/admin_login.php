@@ -8,6 +8,8 @@
 
 	include 'includes/functions.php';
 
+	$title = 'Admin Login';
+
 	$errors = [];
 
 	if(array_key_exists('login', $_POST)) {
