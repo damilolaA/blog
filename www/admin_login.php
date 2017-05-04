@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	include 'includes/admin_header.php';
 
 	include 'includes/db.php';
@@ -20,10 +22,17 @@
 
 		if(empty($errors)) {
 
+			$clean = array_map('trim', $_POST);
+
+			$check = adminLogin($conn, $clean);
+
+				$_SESSION['id'] = $check[1];
+
+				redirect("admin_home.php", "");
+			}
 
 		}
 
-	}
 
 ?>
 	
