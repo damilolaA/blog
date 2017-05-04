@@ -107,10 +107,23 @@
 			$result .= '<td>'.$row[1].'</td>';
 			$result .= '<td>'.$row[2].'</td>';
 			$result .= '<td>'.$row[3].'</td>';
-			$result .= '<td><a href="edit_products.php?book_id='.$row[0].'">edit</a></td>';
-			$result .= '<td><a href="delete_products.php?book_id='.$row[0].'">delete</a></td></tr>';
+			$result .= '<td><a href="editPost.php?post_id='.$row[0].'">edit</a></td>';
+			$result .= '<td><a href="delete_post.php?post_id='.$row[0].'">delete</a></td>';
+			$result .= '<td><a href="archive.php?post_id='.$row[0].'">archive</a></td></tr>';
 		}
 		return $result;
 	}
 
+
+	function getPostbyID($dbconn, $pid) {
+
+		$stmt = $dbconn->prepare("SELECT * FROM blogpost WHERE post_id = :pi");
+
+		$stmt->bindParam(':pi', $pid);
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_BOTH);
+	
+		return $row;
+		}
 ?>
