@@ -60,13 +60,15 @@
 
         </div><!-- /.blog-main -->
 
-        <?php 
+       
+
+      </div><!-- /.row -->
+
+       <?php 
 
           include 'includes/index_sidebar.php';
 
         ?>
-
-      </div><!-- /.row -->
 
     </div><!-- /.container -->
 
