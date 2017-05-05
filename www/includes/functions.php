@@ -171,6 +171,17 @@
 	}
 
 
+	function getAdmin($dbconn) {
+
+		$stmt = $dbconn->prepare("SELECT * FROM admin");
+
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_BOTH);
+
+		return $row;
+	}
+
+
 	function getPost($dbconn) {
 
 		$result = '';
@@ -183,7 +194,7 @@
 
 			$result .= '<div class="blog-post">
            			   <h2 class="blog-post-title">'.$row[1].'</h2>
-           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">Mark</a></p>
+           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">'.$row[3].'</a></p>
            			   <p>  '.$row[2].'  </p>';
 
 		}
@@ -195,17 +206,36 @@
 
 		$result = '';
 
-		$stmt = $dbconn->prepare("SELECT Date_format(post_date, '%M %Y') AS d FROM archive");
+		$stmt = $dbconn->prepare("SELECT post_id, Date_format(post_date, '%M %Y') AS d FROM archive");
 
 		$stmt->execute();
 
 		while($row = $stmt->fetch(PDO::FETCH_BOTH)) {
 
-			$result .=  '<li><a href="index.php?archive_id='.$row[0].'">'.$row['d'].'</a></li>';
+			$result .=  '<li><a href="archive_index.php?post_id='.$row[0].'">'.$row['d'].'</a></li>';
 		}
 
 		return $result;
 	}
 
+
+	function getArchivePost($dbconn, $pid) {
+
+		$result = '';
+
+		$stmt = $dbconn->prepare("SELECT * FROM blogpost WHERE post_id = :pid");
+
+		$stmt->bindParam(':pid', $pid);
+		$stmt->execute();
+
+		while($row = $stmt->fetch(PDO::FETCH_BOTH)) {
+
+			$result .= '<div class="blog-post">
+           			   <h2 class="blog-post-title">'.$row[1].'</h2>
+           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">Mark</a></p>
+           			   <p>  '.$row[2].'  </p>';
+		}
+		return $result;
+	}
 	
 ?>
