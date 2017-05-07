@@ -175,7 +175,7 @@
 
 	function getAdmin($dbconn, $id) {
 
-		$stmt = $dbconn->prepare("SELECT lname FROM admin WHERE admin_id = :aid");
+		$stmt = $dbconn->prepare("SELECT fname, lname FROM admin WHERE admin_id = :aid");
 
 		$stmt->bindParam(':aid', $id);
 		$stmt->execute();
@@ -189,7 +189,7 @@
 
 		$result = '';
 
-		$stmt = $dbconn->prepare("SELECT * FROM blogpost");
+		$stmt = $dbconn->prepare("SELECT post_id, title, post, admin_id, DATE_FORMAT(post_date, '%M %e, %Y') FROM blogpost");
 
 		$stmt->execute();
 
@@ -199,7 +199,7 @@
 
 			$result .= '<div class="blog-post">
            			   <h2 class="blog-post-title">'.$row[1].'</h2>
-           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">'.$input['lname'].'</a></p>
+           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">'.$input['fname'].' '.$input['lname'].'</a></p>
            			   <p>  '.$row[2].'  </p>';
 
 		}
@@ -228,16 +228,18 @@
 
 		$result = '';
 
-		$stmt = $dbconn->prepare("SELECT * FROM blogpost WHERE post_id = :pid");
+		$stmt = $dbconn->prepare("SELECT post_id, title, post, admin_id, Date_format(post_date, '%M %e, %Y') AS d FROM blogpost WHERE post_id = :pid");
 
 		$stmt->bindParam(':pid', $pid);
 		$stmt->execute();
 
 		while($row = $stmt->fetch(PDO::FETCH_BOTH)) {
 
+			$input = getAdmin($dbconn, $row['admin_id']);
+
 			$result .= '<div class="blog-post">
            			   <h2 class="blog-post-title">'.$row[1].'</h2>
-           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">Mark</a></p>
+           			   <p class="blog-post-meta">'.$row['d'].' by <a href="#">'.$input['fname'].' '.$input['lname'].'</a></p>
            			   <p>  '.$row[2].'  </p>';
 		}
 		return $result;
