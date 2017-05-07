@@ -36,14 +36,12 @@
         
       </div><!-- /.row -->
 
-       <?php   include 'includes/index_sidebar.php'; ?>
-
 
     </div><!-- /.container -->
 
     <?php
-
-          include 'includes/index_footer.php';     
+           $check = include 'includes/index_sidebar.php'; echo $check; 
+               
 
      ?>
 
@@ -58,3 +56,5 @@
     
   </body>
 </html>
+
+     <?php $show = include 'includes/index_footer.php'; echo $show; ?>
