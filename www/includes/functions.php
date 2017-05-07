@@ -22,6 +22,20 @@
 	}
 
 
+	function checkLogin() {
+		if(!isset($_SESSION['id'])) {
+			redirect("admin_login.php", "");
+		}
+	}
+
+
+	function logout() {
+		unset($_SESSION['id']); 
+			redirect("admin_login.php", "");
+		
+	}
+
+
 	function adminRegister($dbconn, $input) {
 
 		$stmt = $dbconn->prepare("INSERT INTO admin(fname, lname, email, hash) VALUES(:f, :l, :e, :h)");
@@ -93,12 +107,6 @@
 		/*print_r($data); exit();*/
 
 		$stmt->execute($data);
-	}
-
-	function checkLogin() {
-		if(!isset($_SESSION['id'])) {
-			redirect("admin_login.php", "");
-		}
 	}
 
 
