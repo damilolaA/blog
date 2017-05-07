@@ -112,7 +112,9 @@
 
 		while($row = $stmt->fetch(PDO::FETCH_BOTH)){
 
-			$result .= '<tr><td>'.$row[0].'</td>';
+				$input = getAdmin($dbconn, $row['admin_id']);
+
+			$result .= '<tr><td>'.$input['fname'].'</td>';
 			$result .= '<td>'.$row[1].'</td>';
 			$result .= '<td>'.$row[2].'</td>';
 			$result .= '<td>'.$row[4].'</td>';
@@ -171,10 +173,11 @@
 	}
 
 
-	function getAdmin($dbconn) {
+	function getAdmin($dbconn, $id) {
 
-		$stmt = $dbconn->prepare("SELECT * FROM admin");
+		$stmt = $dbconn->prepare("SELECT lname FROM admin WHERE admin_id = :aid");
 
+		$stmt->bindParam(':aid', $id);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_BOTH);
 
@@ -192,9 +195,11 @@
 
 		while($row = $stmt->fetch(PDO::FETCH_BOTH)) {
 
+			$input = getAdmin($dbconn, $row['admin_id']);
+
 			$result .= '<div class="blog-post">
            			   <h2 class="blog-post-title">'.$row[1].'</h2>
-           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">'.$row[3].'</a></p>
+           			   <p class="blog-post-meta">'.$row[4].' by <a href="#">'.$input['lname'].'</a></p>
            			   <p>  '.$row[2].'  </p>';
 
 		}
