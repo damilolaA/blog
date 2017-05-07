@@ -20,7 +20,7 @@
 			<table id="tab">
 				<thead>
 					<tr>
-						<th>Post ID</th>
+						<th>Admin Name</th>
 						<th>Title</th>
 						<th>Post</th>
 						<th>Date</th>
