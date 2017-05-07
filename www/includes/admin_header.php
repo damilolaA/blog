@@ -14,7 +14,7 @@
 					<li><a href="view_post.php" <?php curNav('view_post.php'); ?> >view posts</a></li>
 					<li><a href="admin_login.php" <?php curNav('admin_login.php'); ?> >login</a></li>
 					<li><a href="register.php" <?php curNav('register.php'); ?>>register</a></li>
-					<li><a href="#">logout</a></li>
+					<li><a href="admin_logout.php">logout</a></li>
 				</ul>
 			</nav>
 		</div>
